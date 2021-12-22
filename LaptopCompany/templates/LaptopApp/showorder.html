@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    <title> all Order</title>
+{% endblock %}
+{% block content %}
+    <h1 style="text-align: center;"> all Order</h1>
+    <table border="4px">
+        <tr>
+            <th>company</th>
+            <th>model_name</th>
+            <th>ram</th>
+            <th>rom</th>
+            <th>processor</th>
+            <th>price</th>
+            <th>weight</th>
+            <th>Action1</th>
+            <th>Action2</th>
+        </tr>
+        {% for order in orders %}
+            <tr>
+                <td>{{order.company}}</td>
+                <td>{{order.model_name}}</td>
+                <td>{{order.ram}}</td>
+                <td>{{order.rom}}</td>
+                <td>{{order.processor}}</td>
+                <td>{{order.price}}</td>
+                <td>{{order.weight}}</td>
+
+
+                <td>
+                    <a href="{% url 'delete_order' order.id%}">
+                        <button class="btn btn-danger">Delete</button>
+                    </a>
+                </td>
+                <td>
+                    <a href="{% url 'update_order' order.id %}"><button class="btn btn-warning">update</button></a>
+                </td>
+            </tr>
+        {% endfor %}
+
+    </table>
+    <br>
+    <a href="{%url 'add_order' %}">
+        <button class="btn btn-success"> add order</button>
+    </a>
+{% endblock %}
